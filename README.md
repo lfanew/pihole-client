@@ -169,4 +169,4 @@ Each of these groups provides a coherent set of functionalities that you can use
 
 ## License
 
-The Pihole API Wrapper is released under the MIT License. See the LICENSE file for more details.
+The software is released under the MIT License. See the LICENSE file for more details.
