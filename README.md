@@ -26,14 +26,15 @@ Then, create an instance of the `PiholeClient` by providing the address of your 
 client = PiholeClient('http://pi.hole', api_token='YourApiToken')
 ```
 
-### Methods
+### Filtering Control
 
-The following sections detail the available methods in the `PiholeClient`.
+These methods are used to enable or disable the Pihole ad filtering.
 
 #### `enable()`
 
 Enables the Pihole filtering.
 
+Example:
 ```python
 client.enable()
 ```
@@ -42,30 +43,44 @@ client.enable()
 
 Disables the Pihole filtering for a specified duration. If no duration is provided, filtering is disabled indefinitely.
 
+Example:
 ```python
 client.disable(300)  # Disables for 5 minutes
 ```
 
+### Update Checks
+
+This method checks for updates to the Pihole software.
+
 #### `check_updates()`
 
-Checks for updates to the Pihole software.
-
+Example:
 ```python
 client.check_updates()
 ```
 
+### Temperature Unit Setting
+
+This method sets the temperature unit displayed in the Pihole interface.
+
 #### `set_temperature_unit(unit)`
 
-Sets the temperature unit displayed in the Pihole interface. Valid units are `'c'`, `'f'`, and `'k'`.
+Valid units are `'c'`, `'f'`, and `'k'`.
 
+Example:
 ```python
 client.set_temperature_unit('f')
 ```
+
+### List Management
+
+These methods are used to add, remove, and retrieve domains from Pihole's various lists.
 
 #### `add_to_list(list_type, domain)`
 
 Adds a domain to one of the specified lists: `'black'`, `'regex_black'`, `'white'`, or `'regex_white'`.
 
+Example:
 ```python
 client.add_to_list('black', 'example.com')
 ```
@@ -74,6 +89,7 @@ client.add_to_list('black', 'example.com')
 
 Removes a domain from one of the specified lists.
 
+Example:
 ```python
 client.remove_from_list('white', 'example.com')
 ```
@@ -82,14 +98,20 @@ client.remove_from_list('white', 'example.com')
 
 Retrieves all domains in a specified list.
 
+Example:
 ```python
 domains = client.get_lists('black')
 ```
+
+### Custom DNS Management
+
+These methods are used to manage custom DNS settings, allowing for specific domain-to-IP address mappings.
 
 #### `get_custom_dns()`
 
 Retrieves all custom DNS settings.
 
+Example:
 ```python
 custom_dns = client.get_custom_dns()
 ```
@@ -98,6 +120,7 @@ custom_dns = client.get_custom_dns()
 
 Adds a custom DNS entry.
 
+Example:
 ```python
 client.add_custom_dns('example.com', '192.168.1.100')
 ```
@@ -106,14 +129,20 @@ client.add_custom_dns('example.com', '192.168.1.100')
 
 Deletes a custom DNS entry.
 
+Example:
 ```python
 client.delete_custom_dns('example.com', '192.168.1.100')
 ```
+
+### Custom CNAME Management
+
+These methods are used to manage custom CNAME records, facilitating domain aliasing within the network.
 
 #### `get_custom_cname()`
 
 Retrieves all custom CNAME settings.
 
+Example:
 ```python
 custom_cname = client.get_custom_cname()
 ```
@@ -122,6 +151,7 @@ custom_cname = client.get_custom_cname()
 
 Adds a custom CNAME entry.
 
+Example:
 ```python
 client.add_custom_cname('portal.example.com', 'internal.example.com')
 ```
@@ -130,17 +160,12 @@ client.add_custom_cname('portal.example.com', 'internal.example.com')
 
 Deletes a custom CNAME entry.
 
+Example:
 ```python
 client.delete_custom_cname('portal.example.com', 'internal.example.com')
 ```
 
-## Error Handling
-
-All methods are designed to raise an `HTTPError` if the API request fails for any reason. Ensure your code properly handles these exceptions.
-
-## Contributing
-
-Contributions to the Pihole API Wrapper are welcome! Please feel free to submit pull requests or report any issues you encounter.
+Each of these groups provides a coherent set of functionalities that you can use to manage your Pihole's behavior and settings effectively. Remember to handle any exceptions these methods may throw, especially when dealing with network or API issues.
 
 ## License
 
